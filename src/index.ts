@@ -1,17 +1,27 @@
 import "dotenv/config";
 import express, {type Request, type Response} from "express";
+import {AuditLogsRepository} from "./auditLogsRepository.js";
 
 const app = express();
 app.use(express.json());
 
 const PORT = 3000;
 
-app.get("/", (req: Request, res: Response) => {
-  res.status(200).send({});
-});
+const auditLogsRepository = new AuditLogsRepository();
+
+app.get("/", async (req: Request, res: Response) => {});
 
 app.get("/api/audit-logs", async (req: Request, res: Response) => {
-  res.send([]);
+  res.status(200).send(await auditLogsRepository.getAuditLogs());
+});
+
+app.post("/api/audit-logs", async (req: Request, res: Response) => {
+  res.status(200).send(
+    await auditLogsRepository.addAuditLog({
+      event_type: req.body.event_type,
+      payload: req.body.payload,
+    })
+  );
 });
 
 app.listen(PORT, () => {
