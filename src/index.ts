@@ -9,7 +9,9 @@ const PORT = 3000;
 
 const auditLogsRepository = new AuditLogsRepository();
 
-app.get("/", async (req: Request, res: Response) => {});
+app.get("/", async (req: Request, res: Response) => {
+  res.status(200).send({});
+});
 
 app.get("/api/audit-logs", async (req: Request, res: Response) => {
   res.status(200).send(await auditLogsRepository.getAuditLogs());
