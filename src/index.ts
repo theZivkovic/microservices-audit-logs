@@ -1,13 +1,11 @@
 import "dotenv/config";
 import express, {type Request, type Response} from "express";
-import {AuditLogsRepository} from "./auditLogsRepository.js";
+import {auditLogsRepository} from "./auditLogsRepository.js";
 
 const app = express();
 app.use(express.json());
 
 const PORT = 3000;
-
-const auditLogsRepository = new AuditLogsRepository();
 
 app.get("/", async (req: Request, res: Response) => {
   res.status(200).send({});

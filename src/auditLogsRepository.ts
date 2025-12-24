@@ -1,7 +1,7 @@
 import {Pool} from "pg";
 import type {AuditLog} from "./auditLog.js";
 
-export class AuditLogsRepository {
+class AuditLogsRepository {
   private pool: Pool;
 
   constructor() {
@@ -28,3 +28,6 @@ export class AuditLogsRepository {
     return result.rows[0];
   }
 }
+
+const auditLogsRepository = new AuditLogsRepository();
+export {auditLogsRepository};
