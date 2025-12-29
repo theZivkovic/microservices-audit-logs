@@ -16,6 +16,7 @@ app.get("/api/audit-logs", async (req: Request, res: Response) => {
 });
 
 app.post("/api/audit-logs", async (req: Request, res: Response) => {
+  console.log("Inbound request payload:", req.body);
   res.status(200).send(
     await auditLogsRepository.addAuditLog({
       event_type: req.body.event_type,
