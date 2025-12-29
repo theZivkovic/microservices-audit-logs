@@ -15,7 +15,9 @@ class AuditLogsRepository {
   }
 
   async getAuditLogs() {
-    const result = await this.pool.query<AuditLog>("select * from audit_logs");
+    const result = await this.pool.query<AuditLog>(
+      "select * from audit_logs order by created_at desc"
+    );
     return result.rows;
   }
 
